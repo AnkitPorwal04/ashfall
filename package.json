@@ -1,0 +1,11 @@
+{
+  "name": "ashfall",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node --check src/engine.js && node --check src/game.js && node --check server.mjs"
+  }
+}
