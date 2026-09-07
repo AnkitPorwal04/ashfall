@@ -4,6 +4,8 @@ An original browser survival arena inspired by the auto-attacking, escalating-ho
 
 ## Play
 
+Play online: https://ashfall-three.vercel.app
+
 Requires Node.js 20 or newer. Run `npm start` from this directory and open http://localhost:4173. The development server binds to this machine only. You can also deploy the HTML, CSS, and `src/` directory to any static host.
 
 - WASD or arrow keys: move. Attacks fire automatically.
@@ -32,3 +34,7 @@ Browser smoke checks covered desktop and a 390px mobile viewport: character sele
 This is a compact playable prototype, not a feature-complete Vampire Survivors clone. There is one procedural arena, no permanent unlock economy, multiplayer, save/resume, or imported asset packs. Terrain is decorative, not blocking. Enemy and effect counts are bounded; under severe frame drops simulation time slows rather than jumping forward. Google Fonts is optional, with local font fallbacks. The server is for local development, not a hardened production service.
 
 `src/engine.js` contains the independently testable simulation. `src/game.js` contains the Canvas renderer, original pixel sprites, audio, controls, and UI.
+
+## Deployment
+
+Vercel builds with `node build.mjs` and publishes only `dist/`, containing the four game assets. The local server, tests, and repository files are not published. The Vercel project is connected to the private GitHub repository; pushes to `main` trigger production deployments. The game URL is public, while the repository remains private.
