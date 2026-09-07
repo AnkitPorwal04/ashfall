@@ -68,10 +68,11 @@ $('reroll').onclick = () => { if (game?.reroll()) showChoices(); };
 addEventListener('keydown', event => {
   if (!game) return;
   const key = event.key.toLowerCase();
-  if (['arrowup', 'arrowdown', 'arrowleft', 'arrowright', ' '].includes(key)) event.preventDefault();
+  const buttonFocused = event.target instanceof Element && !!event.target.closest('button, a');
+  if (game.state === 'playing' && (key !== ' ' || !buttonFocused) && ['arrowup', 'arrowdown', 'arrowleft', 'arrowright', ' '].includes(key)) event.preventDefault();
   if (!event.repeat && (key === 'escape' || key === 'p')) { if (game.state === 'paused') resume(); else pause(); return; }
   if (game.state === 'upgrade' && ['1', '2', '3'].includes(key)) { selectUpgrade(Number(key) - 1); return; }
-  if (game.state === 'playing') { keys.add(key); if (key === ' ' && !event.repeat) game.dash(); }
+  if (game.state === 'playing' && (key !== ' ' || !buttonFocused)) { keys.add(key); if (key === ' ' && !event.repeat) game.dash(); }
   // Keep keyboard focus within the active modal.
   if (key === 'tab') {
     const modal = document.querySelector('.overlay:not([hidden])');
